@@ -30,7 +30,13 @@ app.delete('/users/:id', (req, res) => {
 
 // Product Routes
 app.get('/products', (req, res) => {
-    return res.send('Get products request');
+    const products = Product.find({})
+        .then(products => {
+           return res.json(products);
+        })
+        .catch(err => {
+            return res.status(500).json({ message: err.message });
+        });
 });
 
 app.post('/products', (req, res) => {
@@ -73,3 +79,15 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', userSchema);
+
+// Product Schema
+const productSchema = new mongoose.Schema({
+    name: {
+        type: String,
+    },
+    price: {
+        type: Number,
+    }
+});
+
+const Product = mongoose.model('Product', productSchema);
