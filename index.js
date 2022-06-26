@@ -22,6 +22,23 @@ app.delete('/users/:id', (req, res) => {
     return res.send('Delete request');
 });
 
+// Product Routes
+app.get('/products', (req, res) => {
+    return res.send('Get products request');
+});
+
+app.post('/products', (req, res) => {
+    return res.send('Post products request');
+});
+
+app.put('/products/:id', (req, res) => {
+    return res.send('Put products request');
+});
+
+app.delete('/products/:id', (req, res) => {
+    return res.send('Delete products request');
+});
+
 // Start server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
