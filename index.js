@@ -5,8 +5,14 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
+// Ejemplo middleware
+const middlewareExample = (req, res, next) => {
+    console.log('---------------- Middleware example ----------------');
+    next();
+};
+
 // User Routes
-app.get('/users', (req, res) => {
+app.get('/users', middlewareExample, (req, res) => {
     const users = User.find({})
         .then(users => {
            return res.json(users);
@@ -16,20 +22,20 @@ app.get('/users', (req, res) => {
         });
 });
 
-app.post('/users', (req, res) => {
+app.post('/users', middlewareExample, (req, res) => {
     return res.send('Post request');
 });
 
-app.put('/users/:id', (req, res) => {
+app.put('/users/:id', middlewareExample, (req, res) => {
     return res.send('Put request');
 });
 
-app.delete('/users/:id', (req, res) => {
+app.delete('/users/:id', middlewareExample, (req, res) => {
     return res.send('Delete request');
 });
 
 // Product Routes
-app.get('/products', (req, res) => {
+app.get('/products', middlewareExample, (req, res) => {
     const products = Product.find({})
         .then(products => {
            return res.json(products);
@@ -39,15 +45,15 @@ app.get('/products', (req, res) => {
         });
 });
 
-app.post('/products', (req, res) => {
+app.post('/products', middlewareExample, (req, res) => {
     return res.send('Post products request');
 });
 
-app.put('/products/:id', (req, res) => {
+app.put('/products/:id', middlewareExample, (req, res) => {
     return res.send('Put products request');
 });
 
-app.delete('/products/:id', (req, res) => {
+app.delete('/products/:id', middlewareExample, (req, res) => {
     return res.send('Delete products request');
 });
 
