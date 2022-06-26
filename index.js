@@ -5,20 +5,20 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-// Routes
-app.get('/', (req, res) => {
+// User Routes
+app.get('/users', (req, res) => {
     return res.send('Get request');
 });
 
-app.post('/', (req, res) => {
+app.post('/users', (req, res) => {
     return res.send('Post request');
 });
 
-app.put('/', (req, res) => {
+app.put('/users/:id', (req, res) => {
     return res.send('Put request');
 });
 
-app.delete('/', (req, res) => {
+app.delete('/users/:id', (req, res) => {
     return res.send('Delete request');
 });
 
