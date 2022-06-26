@@ -7,7 +7,13 @@ const port = process.env.PORT || 3000;
 
 // User Routes
 app.get('/users', (req, res) => {
-    return res.send('Get request');
+    const users = User.find({})
+        .then(users => {
+           return res.json(users);
+        })
+        .catch(err => {
+            return res.status(500).json({ message: err.message });
+        });
 });
 
 app.post('/users', (req, res) => {
@@ -52,3 +58,18 @@ mongoose.connect('mongodb://localhost:27017/test')
     .catch(error => {
         console.log('Error connecting to MongoDB: ', error.message);
     });
+
+// User Schema
+const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+    },
+    email: {
+        type: String,
+    },
+    password: {
+        type: String,
+    }
+});
+
+const User = mongoose.model('User', userSchema);
