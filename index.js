@@ -5,6 +5,7 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
+// Routes
 app.get('/', (req, res) => {
     return res.send('Get request');
 });
@@ -21,10 +22,12 @@ app.delete('/', (req, res) => {
     return res.send('Delete request');
 });
 
+// Start server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
+//Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/test')
     .then(() => {
         console.log('Connected to MongoDB');
