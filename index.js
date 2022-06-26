@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -23,3 +24,11 @@ app.delete('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+mongoose.connect('mongodb://localhost:27017/test')
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch(error => {
+        console.log('Error connecting to MongoDB: ', error.message);
+    });
